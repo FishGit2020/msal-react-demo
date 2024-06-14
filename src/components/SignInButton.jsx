@@ -1,7 +1,18 @@
-import Button from '@mui/material/Button';
+import { useMsal } from "@azure/msal-react";
+import Button from "@mui/material/Button";
 
 export const SignInButton = () => {
-    return (
-        <Button color="inherit">Sign in</Button>
-    )
+  const { instance } = useMsal();
+
+  const handleLogin = () => {
+    instance.loginRedirect({
+      scopes: ["user.read"],
+    });
+  };
+
+  return (
+    <Button color="inherit" onClick={handleLogin}>
+      Sign in
+    </Button>
+  );
 };

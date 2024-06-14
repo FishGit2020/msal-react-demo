@@ -1,7 +1,15 @@
-import Button from '@mui/material/Button';
+import { useMsal } from "@azure/msal-react";
+import Button from "@mui/material/Button";
 
 export const SignOutButton = () => {
-    return (
-        <Button color="inherit">Sign out</Button>
-    )
+  const { instance } = useMsal();
+
+  const handleLogout = () => {
+    instance.logoutRedirect();
+  };
+  return (
+    <Button color="inherit" onClick={handleLogout}>
+      Sign out
+    </Button>
+  );
 };
